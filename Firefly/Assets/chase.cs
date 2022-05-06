@@ -2,17 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class chase : MonoBehaviour
+public class Chase : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public float speed;
+    public GameObject[] gos;
+    int rand;
+    private void Start()
     {
-        
+    gos = GameObject.FindGameObjectsWithTag("Gov");
+    rand = Random.Range(0,gos.Length);
     }
-
-    // Update is called once per frame
     void Update()
     {
         
+        
+        GameObject closest = gos[rand];
+        transform.position = Vector3.MoveTowards(transform.position, closest.transform.position, speed * Time.deltaTime);
+
     }
+
+    
 }
